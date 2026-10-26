@@ -1,7 +1,6 @@
 
 const express = require("express");
 const rateLimit = require("express-rate-limit");
-const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,7 +28,9 @@ app.post("/api/chat", async (req, res) => {
     const language = String(req.body?.language || "en");
 
     if (!message) {
-      return res.status(400).json({ error: "Please enter a question." });
+      return res.status(400).json({
+        error: "Please enter a question."
+      });
     }
 
     if (!process.env.OPENAI_API_KEY) {
@@ -71,9 +72,12 @@ app.post("/api/chat", async (req, res) => {
         .join("\n");
 
     return res.json({ reply });
+
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Server error." });
+    return res.status(500).json({
+      error: "Server error."
+    });
   }
 });
 
@@ -82,7 +86,9 @@ app.post("/api/fact-check", async (req, res) => {
     const claim = String(req.body?.claim || "").trim();
 
     if (!claim) {
-      return res.status(400).json({ error: "Enter a claim to check." });
+      return res.status(400).json({
+        error: "Enter a claim to check."
+      });
     }
 
     const key = process.env.GOOGLE_FACT_CHECK_API_KEY;
@@ -96,6 +102,7 @@ app.post("/api/fact-check", async (req, res) => {
     const url = new URL(
       "https://factchecktools.googleapis.com/v1alpha1/claims:search"
     );
+
     url.searchParams.set("query", claim);
     url.searchParams.set("key", key);
     url.searchParams.set("pageSize", "5");
@@ -119,9 +126,12 @@ app.post("/api/fact-check", async (req, res) => {
     ).slice(0, 5);
 
     return res.json({ matches });
+
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Fact-check server error." });
+    return res.status(500).json({
+      error: "Fact-check server error."
+    });
   }
 });
 
