@@ -1,0 +1,17 @@
+{
+  "name": "smart-media-awareness-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smart Media Awareness Hub with secure server-side AI and optional live fact-check search",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0"
+  }
+}
