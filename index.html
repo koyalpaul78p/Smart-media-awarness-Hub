@@ -416,40 +416,14 @@ function toggleCyberDetail(id){const el=document.getElementById(id);if(el)el.cla
 try{quizBest=Number(localStorage.getItem('hubQuizBest')||0)}catch(e){}updateAwarenessScore();
 function checkCyberScenario(){const selected=document.querySelector('input[name="cyberScenario"]:checked');const out=document.getElementById('cyberScenarioFeedback');if(!out)return;if(!selected){out.textContent='Please choose an answer first.';return;}out.textContent=selected.value==='right'?'Correct! Avoid the link and verify the message using an official channel.':'Not the safest choice. Do not click or forward it; verify through an official channel.';out.style.color=selected.value==='right'?'#9af0c1':'#ffe0a8';}
 </script>
-
-<section id="qr-scanner" style="padding:20px;text-align:center">
-  <h2>📷 QR Code Scanner</h2>
-  <p>Scan a QR code to check its content.</p>
-
-  <div id="qr-reader" style="max-width:400px;margin:auto"></div>
-  <p id="qr-result">Scan result will appear here.</p>
-</section>
-
-<script src="https://unpkg.com/html5-qrcode"></script>
-<script>
-const qrResult = document.getElementById("qr-result");
-
-function onScanSuccess(decodedText) {
-  qrResult.textContent = "Scanned: " + decodedText;
-
-  if (/^https?:\/\//i.test(decodedText)) {
-    const open = document.createElement("a");
-    open.href = decodedText;
-    open.textContent = "Open scanned link";
-    open.target = "_blank";
-    open.rel = "noopener noreferrer";
-    qrResult.appendChild(document.createElement("br"));
-    qrResult.appendChild(open);
-  }
-
-  scanner.clear().catch(() => {});
-}
-
-const scanner = new Html5QrcodeScanner(
-  "qr-reader",
-  { fps: 10, qrbox: { width: 250, height: 250 } },
-  false
-);
-scanner.render(onScanSuccess);
-</script>
-</body></html>
+<section style="text-align:center;padding:25px">
+  <h2>📱 Scan to Visit Our Website</h2>
+  <p>Scan this QR code to open Smart Media Awareness Hub.</p>
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fsmart-media-awarness-hub-4.onrender.com"
+    alt="Smart Media Awareness Hub QR Code"
+    width="250"
+    height="250"
+    style="background:white;padding:10px;border-radius:10px"
+  >
+</section></body></html>
